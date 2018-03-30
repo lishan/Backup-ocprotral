@@ -96,7 +96,6 @@
              :style="{'min-height': documentHeight}"
              class="el-menu-vertical-demo"
              :collapse="isCollapse"
-             @select="handleSelect1"
              @open="handleOpen"
              background-color="#545c64"
              text-color="#fff"
@@ -201,7 +200,7 @@
         </el-menu-item-group>
       </el-submenu>
     </el-menu>
-    <div class="container" :style="{'min-height': documentHeight, 'margin-left': mainContainer}">
+    <div class="container" :style="{'margin-left': mainContainer}">
       <transition name="point" enter-active-class="fadeIn">
         <router-view v-if="contentShow"/>
       </transition>
@@ -251,22 +250,6 @@
           let self = this;
           setTimeout(function(){
             self.contentShow = true;
-          },300);
-        }else{
-          this.mainContainer = '200px';
-        }
-      },
-      handleSelect1(key){
-        if(key === "navigator"){
-          this.isCollapse = !this.isCollapse;
-        }
-        if(this.isCollapse){
-          this.mainContainer = '64px';
-          this.contentShow = false;
-          let self = this;
-          setTimeout(function(){
-            self.contentShow = true;
-            self.documentHeight = `${document.documentElement.clientHeight - 60}px`;
           },300);
         }else{
           this.mainContainer = '200px';
