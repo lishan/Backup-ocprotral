@@ -18,6 +18,7 @@ Vue.config.productionTip = false;
 Vue.use(Element);
 Vue.prototype.$echarts = echarts;
 Vue.use(VueResource);
+Vue.use(require('vue-moment'));
 
 /* eslint-disable no-new */
 new Vue({

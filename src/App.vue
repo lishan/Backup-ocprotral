@@ -99,7 +99,8 @@
              @select="handleSelect1"
              background-color="#545c64"
              text-color="#fff"
-             active-text-color="#ffd04b">
+             active-text-color="#ffd04b"
+             router>
       <el-menu-item index="navigator">
         <i class="fa fa-bars"></i>
         <span slot="title">全部导航</span>
@@ -132,7 +133,7 @@
         </template>
         <el-menu-item-group>
           <el-menu-item index="3-1">数据集成</el-menu-item>
-          <el-menu-item index="3-2">流处理引擎</el-menu-item>
+          <el-menu-item index="OCSP">流处理引擎</el-menu-item>
           <el-menu-item index="3-3">网络爬虫</el-menu-item>
         </el-menu-item-group>
       </el-submenu>
