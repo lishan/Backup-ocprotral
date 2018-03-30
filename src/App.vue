@@ -200,7 +200,7 @@
         </el-menu-item-group>
       </el-submenu>
     </el-menu>
-    <div class="container" :style="{'margin-left': mainContainer}">
+    <div class="container" :style="{'min-height': documentHeight,'margin-left': mainContainer}">
       <transition name="point" enter-active-class="fadeIn">
         <router-view v-if="contentShow"/>
       </transition>
@@ -266,8 +266,8 @@
 
 <style>
   html, body {
-    margin: 0;
-    background-color: rgb(24, 32, 40);
+    margin: 0 !important;
+    background-color: rgb(24, 32, 40) !important;
   }
 
   body .el-menu {
