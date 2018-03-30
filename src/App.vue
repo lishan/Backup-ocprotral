@@ -257,7 +257,6 @@
         }
       },
       handleSelect1(key){
-        console.log(key);
         if(key === "navigator"){
           this.isCollapse = !this.isCollapse;
         }
