@@ -102,10 +102,10 @@
              text-color="#fff"
              active-text-color="#ffd04b"
              router>
-      <el-menu-item index="navigator">
-        <i class="fa fa-bars"></i>
+      <div class="el-menu-item" @click="changeMenuStatus">
+        <i class="fa fa-bars" ></i>
         <span slot="title">全部导航</span>
-      </el-menu-item>
+      </div>
       <el-submenu index="1">
         <template slot="title">
           <i class="el-icon-location"></i>
@@ -243,7 +243,21 @@
       handleOpen(key){
         this.documentHeight = `${document.documentElement.clientHeight - 60}px`;
       },
+      changeMenuStatus(){
+        this.isCollapse = !this.isCollapse;
+        if(this.isCollapse){
+          this.mainContainer = '64px';
+          this.contentShow = false;
+          let self = this;
+          setTimeout(function(){
+            self.contentShow = true;
+          },300);
+        }else{
+          this.mainContainer = '200px';
+        }
+      },
       handleSelect1(key){
+        console.log(key);
         if(key === "navigator"){
           this.isCollapse = !this.isCollapse;
         }
