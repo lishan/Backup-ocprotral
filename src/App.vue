@@ -97,6 +97,7 @@
              class="el-menu-vertical-demo"
              :collapse="isCollapse"
              @select="handleSelect1"
+             @open="handleOpen"
              background-color="#545c64"
              text-color="#fff"
              active-text-color="#ffd04b"
@@ -239,8 +240,8 @@
           },200);
         }
       },
-      mouseOver(){
-        console.log("test");
+      handleOpen(key){
+        this.documentHeight = `${document.documentElement.clientHeight - 60}px`;
       },
       handleSelect1(key){
         if(key === "navigator"){
@@ -252,6 +253,7 @@
           let self = this;
           setTimeout(function(){
             self.contentShow = true;
+            self.documentHeight = `${document.documentElement.clientHeight - 60}px`;
           },300);
         }else{
           this.mainContainer = '200px';
