@@ -326,7 +326,7 @@
   .modalContainer{
     color: lightgrey;
     background-color: rgb(24, 32, 40);
-    z-index: 1;
+    z-index: 5;
     position:absolute;
     left: 0;
     top: 60px;
