@@ -4,6 +4,7 @@ import HelloWorld from '@/components/HelloWorld'
 import LogSearch from '@/components/LogSearch'
 import OCSP from '@/components/OCSP'
 import Empty from '@/components/Empty'
+import OCSPproduct from '@/components/OCSPproduct'
 
 Vue.use(Router);
 
@@ -23,6 +24,11 @@ export default new Router({
       path: '/logSearch',
       name: 'LogSearch',
       component: LogSearch
+    },
+    {
+      path: '/ocspproduct',
+      name: 'OCSPproduct',
+      component: OCSPproduct
     }
   ]
 })
