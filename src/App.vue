@@ -63,7 +63,7 @@
               <li class="globalMenuHeader">基础设施</li>
               <li>大数据基础平台</li>
               <li>集群洞察 &nbsp;<div class="uk-badge uk-badge-danger">NEW</div></li>
-              <li>OCSP &nbsp;<div class="uk-badge uk-badge-danger">HOT</div></li>
+              <li><router-link to="/ocspproduct">OCSP &nbsp;<div class="uk-badge uk-badge-danger">HOT</div></router-link></li>
             </ul>
           </el-col>
           <el-col :span="3">
@@ -326,7 +326,7 @@
   .modalContainer{
     color: lightgrey;
     background-color: rgb(24, 32, 40);
-    z-index: 1;
+    z-index: 5;
     position:absolute;
     left: 0;
     top: 60px;
@@ -345,6 +345,18 @@
 
   .globalMenu ul.uk-list li{
     font-size: 12px;
+  }
+
+  .globalMenu ul.uk-list li a {
+    font-size: 12px;
+    color: lightgray;
+    text-decoration: none!important;
+  }
+
+  .globalMenu ul.uk-list li a:hover {
+    text-decoration: none!important;
+    color: rgb(255, 208, 75);
+    cursor: pointer;
   }
 
   .globalMenu ul.uk-list li.globalMenuHeader{
@@ -369,7 +381,7 @@
 
   .container{
     /*background-color: rgb(24, 32, 40);*/
-    padding: 20px;
+    padding: 20px; 
   }
 
   /*.container *{*/
