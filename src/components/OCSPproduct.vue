@@ -154,7 +154,7 @@ export default {
 .tags-area {
   position: absolute;
   top: 120px;
-  right: 100px;
+  right: 60px;
 }
 
 .header-area {
