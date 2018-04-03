@@ -4,15 +4,17 @@
       <div class="brand-item">
       </div>
     </div>
-    <div class="brand-area uk-grid">
-      <div v-for="(item, index) in brand_items" v-bind:key="item.title" class="uk-width-1-3">
-        <h2 class="brand-item-num"><span class="brand-item-icon"><i v-bind:class="item.icon"></i></span>{{ index+1 }}</h2>
-        <h3 class="brand-item-title">{{ item.title }}</h3>
-        <p class="brand-item-content">{{ item.content }}</p>
+    <div class="brand-area">
+      <div class="uk-width-1-1 uk-height-1-1 uk-grid">
+        <div v-for="(item, index) in brand_items" v-bind:key="item.title" class="uk-width-1-3">
+          <h2 class="brand-item-num"><span class="brand-item-icon"><i v-bind:class="item.icon"></i></span><span style="opacity: 0.3;">{{ index+1 }}</span></h2>
+          <h3 class="brand-item-title">{{ item.title }}</h3>
+          <p class="brand-item-content">{{ item.content }}</p>
+        </div>
       </div>
     </div>
     <div class="uk-width-1-1 header-area">
-      <h1 class="header-title">{{ header_title }}<div class="uk-badge header-badge"><i class="uk-icon-caret-square-o-right"></i><font>{{ header_badge }}</font></div></h1>
+      <h1 class="header-title">{{ header_title }}<div class="uk-badge header-badge"><a href="#ocsp_video" data-uk-modal="{center:true, bgclose:false}" v-on:click="playVideo()"><i class="uk-icon-caret-square-o-right uk-margin-small-right"></i>{{ header_badge }}</a></div></h1>
       <p class="header-content">{{ header_content }}</p>
     </div>
     <div class="uk-width-1-1 case-area">
@@ -42,20 +44,36 @@
         </div>
       </div>
     </div>
+    <div class="tags-area">
+      <div id='tag-cloud'></div>
+    </div>
+    <div id="ocsp_video" class="uk-modal">
+      <div class="uk-modal-dialog uk-modal-dialog-lightbox">
+        <a href="javascript:void(0)" v-on:click="pauseVideo()" class="uk-modal-close uk-close uk-close-alt"></a>
+        <video id="ocsp_video_obj" controls name="media">
+          <source v-bind:src="video_path" type="video/mp4">
+          <p>你的浏览器不支持 <code>video</code> 标签</p>
+        </video>
+      </div>
+    </div>
   </div>
 </template>
 <script>
+import '../../tags-sphere/js/jquery-2.1.1.min';
+import '../../tags-sphere/js/jquery.svg3dtagcloud';
+
 export default {
   name: 'OCSPproduct',
   data() {
     return {
       header_title: '流数据处理引擎',
       header_badge: '视频简介',
+      video_path:  '../../static/video/OCSPproduct.mp4',
       header_content: '流处理引擎SP为企业级用户搭建统一的分布式流数据加工处理平台，实现统一的实时数据接入、预处理、标签运算、数据订阅分发，并提供可视化配置开发工具，通过开发配置化提升业务响应时间。',
       brand_items: [
-        {title: '全面支撑用户需求', icon: 'uk-icon-calendar-o', content: '依据业务和数据特点，通过界面化配置和插件式注册，快速实现业务逻辑，提升需求响应度。'},
-        {title: '丰富的数据订阅规则', icon: 'uk-icon-clone', content: '确保企业业务数据间的隐私，同时为精准分析和决策提供依据参考 。'},
-        {title: '可视化界面友好易用', icon: 'uk-icon-eye', content: '易用且直观的界面功能，全面提升易用性，提供精准管理系统的能力。'},
+        {title: '双引擎适配', icon: 'uk-icon-clone', content: '兼容storm、sparkstreaming，满足不同开发者和场景的诉求。'},
+        {title: '多维数据流合并', icon: 'uk-icon-cubes', content: '采用领先的新技术，数据流之间关联，帮助用户快速占领新的业务领域。'},
+        {title: '实时统计分析', icon: 'uk-icon-bar-chart', content: '更加快捷的聚合分析能力，更加精准的数据结果，满足业务发展的实时性要求。'},
       ],
       case_title: '应用案例',
       case_items: [
@@ -70,14 +88,78 @@ export default {
         {title: '开发手册', content: '文档的简单描述信息'},
         {title: '部署文档', content: '文档的简单描述信息'},
       ],
+      settings:  {
+        entries: [
+          { label: '多用户操作体验', url: '#', target: '_top' },
+          { label: '复杂事件处理', url: '#', target: '_top' },
+          { label: '全面支撑用户需求', url: '#', target: '_top' },
+          { label: '丰富的数据订阅规则', url: '#', target: '_top' },
+          { label: '友好易用的可视化界面', url: '#', target: '_top' },
+          { label: '便捷的开发API接口', url: '#', target: '_top' },
+          { label: '通用的数据源适配器', url: '#', target: '_top' },
+          { label: '双引擎能力', url: '#', target: '_top' },
+          { label: '集成机器学习算法', url: '#', target: '_top' },
+          { label: '基于kerberos的安全能力', url: '#', target: '_top' },
+          { label: '多维数据流合并', url: '#', target: '_top' },
+          { label: '实时统计分析', url: '#', target: '_top' },
+        ],
+        width: 460,
+        height: 480,
+        radius: '45%',
+        radiusMin: 75,
+        bgDraw: false,
+        bgColor: '#FFFFFF',
+        opacityOver: 1.00,
+        opacityOut: 0.05,
+        opacitySpeed: 6,
+        fov: 800,
+        speed: 0.6,
+        fontFamily: 'Oswald, Arial, sans-serif',
+        fontSize: '15',
+        fontColor: '#fff',
+        fontWeight: 'normal',
+        fontStyle: 'normal',
+        fontStretch: 'normal',
+        fontToUpperCase: true
+      },
+    }
+  },
+  mounted() {
+    new SVG3DTagCloud(document.getElementById('tag-cloud'), this.settings);
+  },
+  methods: {
+    playVideo: function() {
+      let vid = document.getElementById('ocsp_video_obj');
+      if (vid) {
+        vid.play();
+      }
+    },
+    pauseVideo: function() {
+      let vid = document.getElementById('ocsp_video_obj');
+      if (vid) {
+        vid.pause();
+      }
     }
   }
 }
 </script>
 <style scoped>
+#tag-cloud{
+  width:460px;
+  height:480px;
+}
+
+.tags-area {
+  position: absolute;
+  top: 120px;
+  right: 60px;
+}
+
 .header-area {
   opacity: 0.75;
   background: #303643;
+  background-size: cover;
+  background-image: url('../../static/pics/ocspproduct_bg.png');
   height: 470px;
 }
 
@@ -102,11 +184,12 @@ export default {
   cursor: pointer;
 }
 
-.header-badge font {
+.header-badge a {
   font-family: uex-icon!important;
   font-size: 11px!important;
   color: #FFFFFF!important;
-  letter-spacing: 0;
+  letter-spacing: 0!important;
+  text-decoration: none;
 }
 
 .header-content {
@@ -127,7 +210,9 @@ export default {
   margin-top: 290px;
   margin-left: 58px;
   opacity: 0.91;
-  background: black!important;
+  background: black;
+  background-size: cover;
+  background-image: url('../../static/pics/ocspproduct_brand.png');
   box-shadow: 10px 10px 22px 0 rgba(0,0,0,0.50);
   border-radius: 10px 50px 0 0;
   padding-left: 90px;
@@ -142,7 +227,7 @@ export default {
   margin-top: 264px;
   margin-left: 159px;
   opacity: 0.91;
-  background: rgba(255,255,255,0.09)!important;
+  background: rgba(255,255,255,0.09);
   border: 1px solid rgba(255,255,255,0.35);
   border-radius: 8px 48px 0 0;
 }
@@ -193,6 +278,11 @@ export default {
 .case-img {
   width: 325px;
   height: 159px;
+  transition: all .2s ease-in-out;
+}
+
+.case-img:hover {
+  transform: scale(1.2);
 }
 
 .case-item-title {
