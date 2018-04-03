@@ -4,11 +4,13 @@
       <div class="brand-item">
       </div>
     </div>
-    <div class="brand-area uk-grid">
-      <div v-for="(item, index) in brand_items" v-bind:key="item.title" class="uk-width-1-3">
-        <h2 class="brand-item-num"><span class="brand-item-icon"><i v-bind:class="item.icon"></i></span>{{ index+1 }}</h2>
-        <h3 class="brand-item-title">{{ item.title }}</h3>
-        <p class="brand-item-content">{{ item.content }}</p>
+    <div class="brand-area">
+      <div class="uk-width-1-1 uk-height-1-1 uk-grid">
+        <div v-for="(item, index) in brand_items" v-bind:key="item.title" class="uk-width-1-3">
+          <h2 class="brand-item-num"><span class="brand-item-icon"><i v-bind:class="item.icon"></i></span><span style="opacity: 0.3;">{{ index+1 }}</span></h2>
+          <h3 class="brand-item-title">{{ item.title }}</h3>
+          <p class="brand-item-content">{{ item.content }}</p>
+        </div>
       </div>
     </div>
     <div class="uk-width-1-1 header-area">
@@ -42,6 +44,9 @@
         </div>
       </div>
     </div>
+    <div class="tags-area">
+      <div id='tag-cloud'></div>
+    </div>
     <div id="ocsp_video" class="uk-modal">
       <div class="uk-modal-dialog uk-modal-dialog-lightbox">
         <a href="javascript:void(0)" v-on:click="pauseVideo()" class="uk-modal-close uk-close uk-close-alt"></a>
@@ -54,6 +59,9 @@
   </div>
 </template>
 <script>
+import '../../tags-sphere/js/jquery-2.1.1.min';
+import '../../tags-sphere/js/jquery.svg3dtagcloud';
+
 export default {
   name: 'OCSPproduct',
   data() {
@@ -80,7 +88,46 @@ export default {
         {title: '开发手册', content: '文档的简单描述信息'},
         {title: '部署文档', content: '文档的简单描述信息'},
       ],
+      settings:  {
+        entries: [
+          { label: '多用户操作体验', url: '#', target: '_top' },
+          { label: '复杂事件处理', url: '#', target: '_top' },
+          { label: '全面支撑用户需求', url: '#', target: '_top' },
+          { label: '丰富的数据订阅规则', url: '#', target: '_top' },
+          { label: '友好易用的可视化界面', url: '#', target: '_top' },
+          { label: '便捷的开发API接口', url: '#', target: '_top' },
+          { label: '通用的数据源适配器', url: '#', target: '_top' },
+          { label: '多用户操作体验', url: '#', target: '_top' },
+          { label: '双引擎能力', url: '#', target: '_top' },
+          { label: '集成机器学习算法', url: '#', target: '_top' },
+          { label: '基于kerberos的安全能力', url: '#', target: '_top' },
+          { label: '多维数据流合并', url: '#', target: '_top' },
+          { label: '实时统计分析', url: '#', target: '_top' },
+          { label: '复杂事件处理', url: '#', target: '_top' },
+        ],
+        width: 460,
+        height: 480,
+        radius: '45%',
+        radiusMin: 75,
+        bgDraw: false,
+        bgColor: '#FFFFFF',
+        opacityOver: 1.00,
+        opacityOut: 0.05,
+        opacitySpeed: 6,
+        fov: 800,
+        speed: 0.6,
+        fontFamily: 'Oswald, Arial, sans-serif',
+        fontSize: '15',
+        fontColor: '#fff',
+        fontWeight: 'normal',
+        fontStyle: 'normal',
+        fontStretch: 'normal',
+        fontToUpperCase: true
+      },
     }
+  },
+  mounted() {
+    new SVG3DTagCloud(document.getElementById('tag-cloud'), this.settings);
   },
   methods: {
     playVideo: function() {
@@ -99,9 +146,22 @@ export default {
 }
 </script>
 <style scoped>
+#tag-cloud{
+  width:460px;
+  height:480px;
+}
+
+.tags-area {
+  position: absolute;
+  top: 120px;
+  right: 100px;
+}
+
 .header-area {
   opacity: 0.75;
   background: #303643;
+  background-size: cover;
+  background-image: url('../../static/pics/ocspproduct_bg.png');
   height: 470px;
 }
 
@@ -152,7 +212,9 @@ export default {
   margin-top: 290px;
   margin-left: 58px;
   opacity: 0.91;
-  background: black!important;
+  background: black;
+  background-size: cover;
+  background-image: url('../../static/pics/ocspproduct_brand.png');
   box-shadow: 10px 10px 22px 0 rgba(0,0,0,0.50);
   border-radius: 10px 50px 0 0;
   padding-left: 90px;
@@ -167,7 +229,7 @@ export default {
   margin-top: 264px;
   margin-left: 159px;
   opacity: 0.91;
-  background: rgba(255,255,255,0.09)!important;
+  background: rgba(255,255,255,0.09);
   border: 1px solid rgba(255,255,255,0.35);
   border-radius: 8px 48px 0 0;
 }
