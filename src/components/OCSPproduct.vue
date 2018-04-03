@@ -12,7 +12,7 @@
       </div>
     </div>
     <div class="uk-width-1-1 header-area">
-      <h1 class="header-title">{{ header_title }}<div class="uk-badge header-badge"><i class="uk-icon-caret-square-o-right"></i><font>{{ header_badge }}</font></div></h1>
+      <h1 class="header-title">{{ header_title }}<div class="uk-badge header-badge"><a href="#ocsp_video" data-uk-modal="{center:true, bgclose:false}"><i class="uk-icon-caret-square-o-right uk-margin-small-right"></i>{{ header_badge }}</a></div></h1>
       <p class="header-content">{{ header_content }}</p>
     </div>
     <div class="uk-width-1-1 case-area">
@@ -42,6 +42,14 @@
         </div>
       </div>
     </div>
+    <div id="ocsp_video" class="uk-modal">
+      <div class="uk-modal-dialog uk-modal-dialog-lightbox">
+        <a href="javascript:void(0)" class="uk-modal-close uk-close uk-close-alt"></a>
+        <video controls name="media">
+          <source v-bind:src="video_path" type="video/mp4">
+        </video>
+      </div>
+    </div>
   </div>
 </template>
 <script>
@@ -51,11 +59,12 @@ export default {
     return {
       header_title: '流数据处理引擎',
       header_badge: '视频简介',
+      video_path:  '../../static/video/OCSPproduct.mp4',
       header_content: '流处理引擎SP为企业级用户搭建统一的分布式流数据加工处理平台，实现统一的实时数据接入、预处理、标签运算、数据订阅分发，并提供可视化配置开发工具，通过开发配置化提升业务响应时间。',
       brand_items: [
-        {title: '全面支撑用户需求', icon: 'uk-icon-calendar-o', content: '依据业务和数据特点，通过界面化配置和插件式注册，快速实现业务逻辑，提升需求响应度。'},
-        {title: '丰富的数据订阅规则', icon: 'uk-icon-clone', content: '确保企业业务数据间的隐私，同时为精准分析和决策提供依据参考 。'},
-        {title: '可视化界面友好易用', icon: 'uk-icon-eye', content: '易用且直观的界面功能，全面提升易用性，提供精准管理系统的能力。'},
+        {title: '双引擎适配', icon: 'uk-icon-clone', content: '兼容storm、sparkstreaming，满足不同开发者和场景的诉求。'},
+        {title: '多维数据流合并', icon: 'uk-icon-cubes', content: '采用领先的新技术，数据流之间关联，帮助用户快速占领新的业务领域。'},
+        {title: '实时统计分析', icon: 'uk-icon-bar-chart', content: '更加快捷的聚合分析能力，更加精准的数据结果，满足业务发展的实时性要求。'},
       ],
       case_title: '应用案例',
       case_items: [
@@ -102,11 +111,12 @@ export default {
   cursor: pointer;
 }
 
-.header-badge font {
+.header-badge a {
   font-family: uex-icon!important;
   font-size: 11px!important;
   color: #FFFFFF!important;
-  letter-spacing: 0;
+  letter-spacing: 0!important;
+  text-decoration: none;
 }
 
 .header-content {
@@ -193,6 +203,11 @@ export default {
 .case-img {
   width: 325px;
   height: 159px;
+  transition: all .2s ease-in-out;
+}
+
+.case-img:hover {
+  transform: scale(1.2);
 }
 
 .case-item-title {
