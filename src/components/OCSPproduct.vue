@@ -12,7 +12,7 @@
       </div>
     </div>
     <div class="uk-width-1-1 header-area">
-      <h1 class="header-title">{{ header_title }}<div class="uk-badge header-badge"><a href="#ocsp_video" data-uk-modal="{center:true, bgclose:false}"><i class="uk-icon-caret-square-o-right uk-margin-small-right"></i>{{ header_badge }}</a></div></h1>
+      <h1 class="header-title">{{ header_title }}<div class="uk-badge header-badge"><a href="#ocsp_video" data-uk-modal="{center:true, bgclose:false}" v-on:click="playVideo()"><i class="uk-icon-caret-square-o-right uk-margin-small-right"></i>{{ header_badge }}</a></div></h1>
       <p class="header-content">{{ header_content }}</p>
     </div>
     <div class="uk-width-1-1 case-area">
@@ -44,9 +44,10 @@
     </div>
     <div id="ocsp_video" class="uk-modal">
       <div class="uk-modal-dialog uk-modal-dialog-lightbox">
-        <a href="javascript:void(0)" class="uk-modal-close uk-close uk-close-alt"></a>
-        <video controls name="media">
+        <a href="javascript:void(0)" v-on:click="pauseVideo()" class="uk-modal-close uk-close uk-close-alt"></a>
+        <video id="ocsp_video_obj" controls name="media">
           <source v-bind:src="video_path" type="video/mp4">
+          <p>你的浏览器不支持 <code>video</code> 标签</p>
         </video>
       </div>
     </div>
@@ -79,6 +80,20 @@ export default {
         {title: '开发手册', content: '文档的简单描述信息'},
         {title: '部署文档', content: '文档的简单描述信息'},
       ],
+    }
+  },
+  methods: {
+    playVideo: function() {
+      let vid = document.getElementById('ocsp_video_obj');
+      if (vid) {
+        vid.play();
+      }
+    },
+    pauseVideo: function() {
+      let vid = document.getElementById('ocsp_video_obj');
+      if (vid) {
+        vid.pause();
+      }
     }
   }
 }
